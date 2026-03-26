@@ -17,19 +17,32 @@ function addMessage(role, content) {
 // 🔥 Typing effect
 async function typeMessage(element, text) {
   element.innerHTML = "";
-  let i = 0;
 
-  while (i < text.length) {
-    element.innerHTML += text[i];
-    i++;
+  const lines = text.split("\n");
 
-    chat.scrollTop = chat.scrollHeight;
+  for (let i = 0; i < lines.length; i++) {
+    let currentLine = "";
+    const line = lines[i];
 
-    await new Promise(res => setTimeout(res, 15)); // speed control
+    // create a container for this line
+    const lineDiv = document.createElement("div");
+    element.appendChild(lineDiv);
+
+    // type character by character
+    for (let j = 0; j < line.length; j++) {
+      currentLine += line[j];
+
+      // render current line with markdown
+      lineDiv.innerHTML = marked.parse(currentLine);
+
+      chat.scrollTop = chat.scrollHeight;
+
+      await new Promise(res => setTimeout(res, 15)); // 🔥 typing speed
+    }
+
+    // small pause before next line
+    await new Promise(res => setTimeout(res, 200));
   }
-
-  // render markdown after typing
-  element.innerHTML = marked.parse(text);
 }
 
 // 🔥 Send message

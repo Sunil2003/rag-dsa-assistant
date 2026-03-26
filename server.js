@@ -13,6 +13,8 @@ app.use(express.json());
 
 connectDB();
 
+// console.log("API KEY:", process.env.GEMINI_API_KEY);
+
 app.use("/api", chatRoutes);
 
 app.listen(process.env.PORT, () =>

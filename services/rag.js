@@ -37,7 +37,7 @@ export async function handleQuery(userId, query, res) {
     .map(h => `User: ${h.query}\nAssistant: ${h.response}`)
     .join("\n");
 
-  // 2. Rewrite query (🔥 key step)
+  // 2. Rewrite query ( key step)
   const finalQuery = await rewriteQuery(historyText, query);
 
   // 3. Embedding
@@ -48,12 +48,15 @@ export async function handleQuery(userId, query, res) {
 
   const context = docs.join("\n\n");
 
-  // 5. FINAL PROMPT (🔥 improved)
-  const prompt = `
-You are a DSA instructor.
+  // 5. FINAL PROMPT ( improved)
+ const prompt = `
+You are a strict DSA instructor.
 
-CHAT HISTORY:
-${historyText}
+IMPORTANT RULES:
+- Answer ONLY from the provided CONTEXT.
+- If the answer is not in CONTEXT, say "I don't know".
+- Do NOT use your own knowledge.
+- Do NOT guess.
 
 ---
 
@@ -66,10 +69,6 @@ QUESTION:
 ${finalQuery}
 
 ---
-
-Answer clearly and concisely.
-Use history if needed.
-Do not hallucinate.
 
 ANSWER:
 `;

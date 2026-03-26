@@ -57,7 +57,7 @@ async function sendMessage() {
   const botDiv = addMessage("assistant", "Typing...");
 
   try {
-    const res = await fetch("http://localhost:3000/api/ask", {
+    const res = await fetch("https://rag-dsa-assistant.onrender.com/api/ask", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({

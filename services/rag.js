@@ -50,11 +50,12 @@ export async function handleQuery(userId, query, res) {
 
   // 5. FINAL PROMPT ( improved)
  const prompt = `
-You are a strict DSA instructor.
+You are a  DSA instructor.
 
 IMPORTANT RULES:
 - Answer ONLY from the provided CONTEXT.
-- If the answer is not in CONTEXT, say "I don't know".
+- If the answer is not in CONTEXT, say "Not is in reference book".
+and provide the exact source from the CONTEXT. 
 - Do NOT use your own knowledge.
 - Do NOT guess.
 

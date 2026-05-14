@@ -8,7 +8,8 @@ export async function saveChat(userId, query, response) {
 
 export async function getHistory(userId) {
   return await Chat.find({ userId })
-    .sort({ createdAt: -1 })
+    // .sort({ createdAt: -1 })
+    .sort({ createdAt: 1 })
     .limit(3)
     .lean();
 }

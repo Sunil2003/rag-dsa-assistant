@@ -53,15 +53,7 @@ export async function handleQuery(userId, query, res) {
 You are a  DSA instructor.
 
 IMPORTANT RULES:
-- Answer ONLY from the provided CONTEXT.
-- If the answer is not in CONTEXT, say "Not is in reference book".
-and provide the exact source from the CONTEXT. 
-- Do NOT use your own knowledge.
-- Do NOT guess.
-
-- if the context is not in reference book, say use Hallucination. and Give the answer from your own knowledge.
-- and please provide the answer for every query but if the answer is not in reference book, say use Hallucination. and Give the answer from your own knowledge. and mention that like not in referrence book in bold and so one and like wise.
-
+- Do not Hallucination , use content based on reference book.
 ---
 
 CONTEXT:

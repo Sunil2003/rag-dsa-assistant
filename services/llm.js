@@ -6,11 +6,23 @@ dotenv.config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-export async function streamLLM(prompt, res) {
-  const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash"
-  });
+// export async function streamLLM(prompt, res) {
+//   const model = genAI.getGenerativeModel({
+//       model: "gemini-2.5-flash"
+//   });
 
+//   const result = await model.generateContentStream(prompt);
+
+//   for await (const chunk of result.stream) {
+//     const text = chunk.text();
+//     res.write(text);
+//   }
+
+//   res.end();
+// }
+
+export async function streamLLM(prompt, res) {
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
   const result = await model.generateContentStream(prompt);
 
   for await (const chunk of result.stream) {
@@ -18,7 +30,7 @@ export async function streamLLM(prompt, res) {
     res.write(text);
   }
 
-  res.end();
+  // NO res.end() here — rag.js handles it after saveChat
 }
 
 export async function generateText(prompt) {

@@ -43,7 +43,8 @@ function cosineSimilarity(a, b) {
 export async function search(queryEmbedding, topK = 3) {
   await connect();
 
-  const docs = await collection.find().toArray();
+  // const docs = await collection.find().toArray();
+  const docs = await collection.find().limit(500).toArray();
 
   const scored = docs.map(doc => ({
     text: doc.text,

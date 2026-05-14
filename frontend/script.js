@@ -1,3 +1,12 @@
+setInterval(() => {
+  fetch("https://rag-dsa-assistant.onrender.com/api/ask", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId: "ping", query: "ping" })
+  }).catch(() => {});
+}, 5 * 60 * 1000);
+
+
 const chat = document.getElementById("chat");
 const input = document.getElementById("input");
 
